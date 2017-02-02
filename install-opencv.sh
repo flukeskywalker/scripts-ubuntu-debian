@@ -21,10 +21,10 @@ sudo apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-d
 sudo apt-get install -y libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
 
 # Parallelism and linear algebra libraries:
-sudo apt-get install -y libtbb-dev libeigen3-dev
+sudo apt-get install -y libtbb-dev libeigen3-dev libopenblas-dev liblapack-dev liblapacke-dev
 
-# Python:
-sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
+# Python (not needed since we will use a virtualenv):
+# sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
 
 # Java:
 sudo apt-get install -y ant default-jdk
@@ -33,7 +33,7 @@ sudo apt-get install -y ant default-jdk
 sudo apt-get install -y doxygen
 
 
-# INSTALL THE LIBRARY (YOU CAN CHANGE '3.1.0' FOR THE LAST STABLE VERSION)
+# INSTALL THE LIBRARY (YOU CAN CHANGE '3.2.0' FOR THE LAST STABLE VERSION)
 
 sudo apt-get install -y unzip wget
 wget https://github.com/opencv/opencv/archive/3.2.0.zip
@@ -43,7 +43,7 @@ mv opencv-3.2.0 OpenCV
 cd OpenCV
 mkdir build
 cd build
-cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON ..
+cmake  -DWITH_LIBV4L=ON -DBUILD_TIFF=ON -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON ..
 make -j4
 sudo make install
 sudo ldconfig
